@@ -1,2 +1,2 @@
-# MPI Parallel implementation of finding the Covering Radius of Linear Codes
-Here we give a Message Passing Interface (MPI) parallel implementation (uploaded .cpp, file) of a known algorithm for finding the Covering Radius of Linear Codes over Finite Fields Using a Parity-Check Matrix. Parallel
+# MPI Parallel implementation of computes the Covering Radius of Linear Codes
+Here we give a Message Passing Interface (MPI) parallel implementation (uploaded .cpp, file) of a known algorithm for computing the Covering Radius of Linear $[n,k]_q$ Codes $C$ over Finite Fields using a Parity-Check Matrix. The algorithm is based on generation of linear combinations of the columns of a parity-check matrix $H_{n-k*n}$ and therefore the corresponding syndromes of $C$.
