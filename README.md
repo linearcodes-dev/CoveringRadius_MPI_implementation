@@ -13,3 +13,17 @@ The Master–Worker paradigm in MPI involves a master process that coordinates t
 ##### Vectorization
 
 The proposed parallel procedure accelerates the computation of the covering radius by efficiently evaluating linear combinations of parity-check matrix columns over finite fields $F_q$, with $q≤64$, using SIMD vectorization. By packing column vectors into 128-bit registers and performing byte-wise modular addition entirely within SIMD instructions, the implementation avoids lookup tables, minimizes memory access, and preserves exact arithmetic. As a result, the SIMD-enhanced approach significantly reduces computational overhead and enables scalable exploration of larger search spaces in practical time.
+
+#### Parallel implementation
+
+Parallelizing the algorithm for computing the covering radius of a linear code presents challenges related to synchronization and shared data access, particularly for managing the syndrome array. The proposed MPI-based Master–Worker approach addresses these issues by assigning the generation of linear combinations to worker processes while the master process coordinates iterations over the parameter $l$, collects newly generated syndromes, updates the global syndrome array, and determines termination once all syndromes have been covered. The master process is given in Algorithm:
+
+...
+
+### Experimental results
+
+...
+
+### Note
+More details about the implemented algorithms, their performance analysis, and experimental results can be found in the following paper:
+Bouyukliev I, Bikov D, Pashinska-Gadzheva M. How to Find the Covering Radius of Linear Codes over Finite Fields Using a Parity-Check Matrix in Parallel.
