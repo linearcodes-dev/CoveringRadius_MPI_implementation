@@ -22,13 +22,13 @@ Parallelizing the algorithm for computing the covering radius of a linear code p
 
 ### Experimental results
 
-Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz base clock, 16 cores, 24 threads). The MPI implement Master–Worker strategy. 
+Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz base clock, 16 cores, 24 threads). 
 
 Compile: **mpicxx -O3 -DNDEBUG name.cpu -o name**
 
 Run: **mpirun -np x ./name** 
 
-Table 1 shows execution times for different numbers of worker processes with a buffer size of 1,000,000 elements. SSE extended registers were also used in the implementation.
+The MPI parallel implementation employs a Master–Worker strategy. Table 1 presents the execution times for varying numbers of worker processes with a buffer size of 1000000 elements. The implementation also utilizes SSE extended registers.
 
 |  q  |  n  |  k  | R |   W=1   |  W=2   |  W=4   |  W=8   |  W=16  | 
 |-----|-----|-----|---|---------|--------|--------|--------|--------|
