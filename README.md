@@ -40,8 +40,11 @@ Preliminary experimental results are presented to evaluate the efficiency of the
 **Linux (Ubuntu)**
 
 mpicc --version
-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0 ...
+
 mpirun --version
+
 mpirun (**Open MPI**) 4.1.6
 
 Compile: 
