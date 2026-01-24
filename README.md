@@ -24,6 +24,13 @@ Each worker computes a chunk of linear combinations, using SSE4.1 vectorization 
 
 <img width="603" height="494" alt="WorkerProcess" src="https://github.com/user-attachments/assets/b861e6c4-60de-46df-a106-532560f91945" />
 
+In the proposed parallel approach, each worker independently determines the subset of linear combinations it processes based on its rank and the total number of workers, while the master only broadcasts the current radius $R$ and maintains a global syndrome array. Workers enumerate their assigned combinations, compute syndromes, and send newly discovered syndrome indices to the master in buffered batches to reduce communication overhead. This design achieves good scalability and low memory usage, with parallel time complexity 
+$O(TOTAL/P)$ and modest communication cost when an appropriate buffer size is used. Only the master stores the global syndrome array, while each worker requires minimal local memory.
+
+##### Master-Worker strategy, multiple master processes
+
+...
+
 ### Experimental results
 
 Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz base clock, 16 cores, 24 threads). 
