@@ -37,7 +37,20 @@ One way to address this bottleneck is to use multiple $master$ processes. In thi
 
 Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz Performance-core Base Frequency, 2.40 GHz Efficient-core Base Frequency, 16 total cores, 8 Performance-cores, 8 Efficient-cores, 24 total threads). 
 
-Compile: **mpicxx -O3 -DNDEBUG name.cpu -o name**
+**Linux (Ubuntu)**
+
+mpicc --version
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+mpirun --version
+mpirun (**Open MPI**) 4.1.6
+
+Compile: 
+
+**mpicxx -O3 -DNDEBUG -march=native name.cpp -o name**
+
+or explicitly:
+
+**mpicxx -O3 -DNDEBUG -mavx2 -mfma -msse4.1 name.cpp -o name**
 
 Run: **mpirun -np x ./name** 
 
