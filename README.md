@@ -67,6 +67,8 @@ Table 2 presents the computational times for the MPI Master-Worker strategy impl
 
 **Table 2**. Execution times with MPI and multiple master processes
 
+As shown in the table, with one master process good scalability is observed up to 12 workers. Increasing the number of master processes results in slower execution when only one worker is used. However, scalability improves compared to the single-master case as the number of workers increases. We also observe that when hyperthreading is used, the rate at which the speedup grows declines.
+
 Speedup ($S_p$) is given by the formula:
 
 $S_p=T_1/T_P$
