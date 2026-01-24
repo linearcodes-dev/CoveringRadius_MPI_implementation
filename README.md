@@ -16,7 +16,11 @@ The proposed parallel procedure accelerates the computation of the covering radi
 
 #### Parallel implementation
 
-Parallelizing the algorithm for computing the covering radius of a linear code presents challenges related to synchronization and shared data access, particularly for managing the syndrome array. The proposed MPI-based Master–Worker approach addresses these issues by assigning the generation of linear combinations to worker processes while the master process coordinates iterations over the parameter $l$, collects newly generated syndromes, updates the global syndrome array, and determines termination once all syndromes have been covered. The master process is given in Algorithm:
+Parallelizing the algorithm for computing the covering radius of a linear code requires careful handling of synchronization and shared data access, particularly for managing the syndrome array. The proposed MPI-based Master–Worker approach assigns the generation of linear combinations to worker processes, while the master process coordinates iterations over the parameter $l$ (the number of columns of $H$ in each linear combination), collects newly generated syndromes, updates the global syndrome array, and terminates the computation once all $θ$ syndromes are found. The master process is given in Algorithm:
+
+...
+
+Each worker computes a chunk of linear combinations, using SSE4.1 vectorization to accelerate arithmetic over prime fields, and generates syndromes. Newly discovered syndromes are sent back to the master in small batches, which reduces communication overhead and idle time. This design balances the workload across workers and minimizes synchronization delays. The outline of the worker processes workflow is given in Algorithm:
 
 ...
 
