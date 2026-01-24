@@ -34,10 +34,18 @@ Preliminary experimental results are presented to evaluate the efficiency of the
 
 **Table 1**. Execution times with MPI and Master-Worker strategy
 
-Table 2 presents the computational times for an implementation with multiple master processes. Here the computations were executed on system Fujitsu Primergy RX 2540 M4 703
-with 128 GB RAM, CPU 2x Intel Xeon Gold 5118 2.30GHz 24 cores.
+Table 2 presents the computational times for the MPI Master-Worker strategy implementation with multiple master processes. The computations were executed on a Fujitsu Primergy RX2540 M4 system equipped with 128 GB of RAM and two Intel Xeon Gold 5118 processors (2.30 GHz), providing a total of 24 cores. The column labeled $M$ indicates the number of master processes, followed by columns reporting the execution times in seconds for 1, 2, 4, 8, 16, and 24 worker processes.
 
+|  q  |  n  |  k  | R | M |  W=1   |  W=2   |  W=4   |  W=8   |  W=12  |  W=16  |  W=24  |  
+|-----|-----|-----|---|---|--------|--------|--------|--------|--------|--------|--------|
+|  3  |  38 |  22 | 7 | 1 | 47.15s | 20.04s | 10.46s |  5.49s |  4.59s |  4.69s |  5.60s |
+|  3  |  38 |  22 | 7 | 2 | 48.64s | 25.27s | 13.25s |  7.38s |  4.62s |  3.78s |  3.16s |
+|  3  |  38 |  22 | 7 | 4 | 51.23s | 25.80s | 13.34s |  7.29s |  4.59s |  3.68s |  3.88s |
+|  5  |  26 |  14 | 7 | 1 | 139.9s | 57.55s | 29.57s | 16.03s | 16.06s | 16.72s | 17.44s |
+|  5  |  26 |  14 | 7 | 2 | 141.9s | 72.06s | 38.20s | 20.14s | 13.53s | 11.11s |  9.74s |
+|  5  |  26 |  14 | 7 | 4 | 149.8s | 76.06s | 38.25s | 19.96s | 13.62s | 10.80s |  9.52s |
 
+**Table 2**. Execution times with MPI and multiple master processes
 
 ### Note
 More details about the implemented algorithms, their performance analysis, and experimental results can be found in the following paper:
