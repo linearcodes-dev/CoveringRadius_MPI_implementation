@@ -36,12 +36,6 @@ Preliminary experimental results are presented to evaluate the efficiency of the
 
 Table 2 presents the computational times for the MPI Master-Worker strategy implementation with multiple master processes. The computations were executed on a Fujitsu Primergy RX2540 M4 system equipped with 128 GB of RAM and two Intel Xeon Gold 5118 processors (2.30 GHz), providing a total of 24 cores. The column labeled $M$ indicates the number of master processes, followed by columns reporting the execution times in seconds for 1, 2, 4, 8, 16, and 24 worker processes.
 
-Speedup ($S_p$) is given by the formula:
-
-$S_p=T_1/T_P$
-
-$P=$ number of processors; $T_1=$ time for optimal serial algorithm on one processor; $T_p$= time for parallel algorithm on $P$ processors.
-
 |  q  |  n  |  k  | R | M |  W=1   |  W=2   |  W=4   |  W=8   |  W=12  |  W=16  |  W=24  |W1(M1)vs.W(24)| 
 |-----|-----|-----|---|---|--------|--------|--------|--------|--------|--------|--------|--------------|
 |  3  |  38 |  22 | 7 | 1 | 47.15s | 20.04s | 10.46s |  5.49s |  4.59s |  4.69s |  5.60s |     8.41x    |
@@ -52,6 +46,12 @@ $P=$ number of processors; $T_1=$ time for optimal serial algorithm on one proce
 |  5  |  26 |  14 | 7 | 4 | 149.8s | 76.06s | 38.25s | 19.96s | 13.62s | 10.80s |  9.52s |     14.7x    |
 
 **Table 2**. Execution times with MPI and multiple master processes
+
+Speedup ($S_p$) is given by the formula:
+
+$S_p=T_1/T_P$
+
+$P=$ number of processors; $T_1=$ time for optimal serial algorithm on one processor; $T_p$= time for parallel algorithm on $P$ processors.
 
 ### Note
 More details about the implemented algorithms, their performance analysis, and experimental results can be found in the following paper:
