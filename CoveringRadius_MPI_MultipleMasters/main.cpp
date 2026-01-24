@@ -107,7 +107,7 @@ void transpose_rectangular()
 	matrix.n = K;
 }
 //================================================================
-// Reads a k×n matrix from file "dual" into 'matrix', converting characters to integers; returns 0 on success, 1 on error.
+// Reads a kÃ—n matrix from file "dual" into 'matrix', converting characters to integers; returns 0 on success, 1 on error.
 int read_matrix()
 {
 	// Initialize values to 0
@@ -260,9 +260,8 @@ int main(int argc, char** argv)
 		//================================================================
 		// Dynamically allocate memory for the syndrome array
 		int rr = n - k;
-		const unsigned long long int synLenght = ipow(q, rr) / 64 + 10; //const unsigned long long int synLenght = 1500000; 
-		unsigned long long int* syn;
-		syn = (unsigned long long int*)malloc((synLenght) * sizeof(unsigned long long int));
+		const unsigned long long int synLenght = ((ipow(q, rr)-1)/(q-1))/64+10;  
+		unsigned long long int* syn = (unsigned long long int*)malloc((synLenght) * sizeof(unsigned long long int));
 		if (syn == NULL)
 		{
 			fprintf(stderr, "Master failed to allocate memory!\n");
@@ -616,3 +615,4 @@ int main(int argc, char** argv)
 	MPI_Finalize(); // Finalize the MPI environment and clean up resources
 	return 0;
 }
+
