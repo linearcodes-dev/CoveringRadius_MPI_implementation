@@ -29,11 +29,13 @@ $O(TOTAL/P)$ and modest communication cost when an appropriate buffer size is us
 
 ##### Master-Worker strategy, multiple master processes
 
-...
+It is important to note that the presented Master–Worker algorithm differs from the traditional approach. As shown in $Master$ $Process$ Algorithm, the master process also performs computation, namely tracking and marking the generated syndromes. Consequently, increasing the number of worker processes can introduce communication bottlenecks, which leads to a reduction in speedup as the number of workers grows.
+
+One way to address this bottleneck is to use multiple $master$ processes. In this scheme, each master tracks only a subset of the syndromes, determined by its process ID. The covering radius is obtained once all master processes have received their complete subsets of syndromes. On the worker side, multiple buffer arrays are maintained—one for each master process—and each newly generated syndrome is stored in the buffer corresponding to its rank. The final result is then obtained using collective communication via $MPI_Reduce$.
 
 ### Experimental results
 
-Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz base clock, 16 cores, 24 threads). 
+Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz Performance-core Base Frequency, 2.40 GHz Efficient-core Base Frequency, 16 total cores, 8 Performance-cores, 8 Efficient-cores, 24 total threads). 
 
 Compile: **mpicxx -O3 -DNDEBUG name.cpu -o name**
 
@@ -52,7 +54,7 @@ The MPI parallel implementation employs a Master–Worker strategy. Table 1 pres
 
 **Table 1**. Execution times with MPI and Master-Worker strategy
 
-Table 2 presents the computational times for the MPI Master-Worker strategy implementation with multiple master processes. The computations were executed on a Fujitsu Primergy RX2540 M4 system equipped with 128 GB of RAM and two Intel Xeon Gold 5118 processors (2.30 GHz), providing a total of 24 cores. The column labeled $M$ indicates the number of master processes, followed by columns reporting the execution times in seconds for 1, 2, 4, 8, 16, and 24 worker processes.
+Table 2 presents the computational times for the MPI Master-Worker strategy implementation with multiple master processes. The computations were executed on a Fujitsu Primergy RX2540 M4 system equipped with 128 GB of RAM and two Intel Xeon Gold 5118 processors (2.30 GHz, Base Frequency), providing a total of 24 cores. The column labeled $M$ indicates the number of master processes, followed by columns reporting the execution times in seconds for 1, 2, 4, 8, 16, and 24 worker processes.
 
 |  q  |  n  |  k  | R | M |  W=1   |  W=2   |  W=4   |  W=8   |  W=12  |  W=16  |  W=24  |W1(M1)vs.W(24)| 
 |-----|-----|-----|---|---|--------|--------|--------|--------|--------|--------|--------|--------------|
@@ -70,6 +72,8 @@ Speedup ($S_p$) is given by the formula:
 $S_p=T_1/T_P$
 
 $P=$ number of processors; $T_1=$ time for optimal serial algorithm on one processor; $T_p$= time for parallel algorithm on $P$ processors.
+
+An implementation with multiple master processes is considered to enhance scalability as the number of worker processes increases. The resulting speedup is close to the maximal achievable value when the total number of processes matches the number of physical cores.
 
 ### Note
 More details about the implemented algorithms, their performance analysis, and experimental results can be found in the following paper:
