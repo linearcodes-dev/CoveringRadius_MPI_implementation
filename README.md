@@ -33,9 +33,9 @@ It is important to note that the presented Master–Worker algorithm differs fro
 
 One way to address this bottleneck is to use multiple $master$ processes. In this scheme, each master tracks only a subset of the syndromes, determined by its process ID. The covering radius is obtained once all master processes have received their complete subsets of syndromes. On the worker side, multiple buffer arrays are maintained—one for each master process—and each newly generated syndrome is stored in the buffer corresponding to its rank. The final result is then obtained using collective communication via $MPI_Reduce$.
 
-### Experimental results
+### How to Compilev and Run the Source Code
 
-Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz Performance-core Base Frequency, 2.40 GHz Efficient-core Base Frequency, 16 total cores, 8 Performance-cores, 8 Efficient-cores, 24 total threads). 
+General Remarks According to the Operating System: 
 
 **Linux (Ubuntu)**
 
@@ -60,6 +60,30 @@ Run: **mpirun -np x ./name**
 **Windows (Microsoft MPI)**
 
 Link: https://learn.microsoft.com/en-us/message-passing-interface/microsoft-mpi
+
+Both CMake and Make can be used for compilation with the provided files (CMakeLists.txt and Makefile). The CMake framework will set up a project for a given IDE and can be used on Windows- and Linux-based operating systems. If MPI is available, it will link the required libraries. Otherwise, a project will not be generated and the program will report an error. It can be used from the terminal or with a graphical user interface.
+
+**Example (Windows OS):**
+
+cmake -G "Visual Studio 16 2019" -B .\ msvc -S .\
+
+cmake -G "CodeBlocks" -B .\ cb -S .\
+
+Run on Windows with 8 processes: 
+
+mpiexec -np 8 .\CoveringRadiusMPI.exe
+
+**Example (Linux OS):** One can also compile on Linux directly:
+
+mpicxx -DNDEBUG -march=native -O3 main.cpp LinearCombinations.h Covering_functions.h Data.h Polynomials.h  -o CoveringRadiusMPI
+
+Run on Linux with 8 processes:
+
+mpirun -n 8 CoveringRadiusMPI
+
+### Experimental results
+
+Preliminary experimental results are presented to evaluate the efficiency of the proposed parallel MPI implementation. The computations were executed on an Intel Core i9-12900K processor (3.2 GHz Performance-core Base Frequency, 2.40 GHz Efficient-core Base Frequency, 16 total cores, 8 Performance-cores, 8 Efficient-cores, 24 total threads). 
 
 The MPI parallel implementation employs a Master–Worker strategy. Table 1 presents the execution times for varying numbers of worker processes with a buffer size of 1000000 elements. The implementation also utilizes SSE extended registers.
 
