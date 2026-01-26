@@ -57,6 +57,9 @@ or explicitly:
 
 Run: **mpirun -np x ./name** 
 
+**Windows (Microsoft MPI) **
+Link: https://learn.microsoft.com/en-us/message-passing-interface/microsoft-mpi
+
 The MPI parallel implementation employs a Master–Worker strategy. Table 1 presents the execution times for varying numbers of worker processes with a buffer size of 1000000 elements. The implementation also utilizes SSE extended registers.
 
 |  q  |  n  |  k  | R |   W=1   |  W=2   |  W=4   |  W=8   |  W=16  | 
