@@ -35,6 +35,8 @@ One way to address this bottleneck is to use multiple $master$ processes. In thi
 
 ### How to Compile and Run the Source Code
 
+In the directory "CoveringRadius_MPI_MultipleMasters", the source code files implementing an MPI-parallel algorithm for computing the covering radius of linear codes are provided. Additionally, a file with example matrices is included; these matrices represent parity-check matrices of linear codes. The directory also contains CMakeLists.txt and a Makefile.
+
 General Remarks According to the Operating System: 
 
 **Linux (Ubuntu)**
