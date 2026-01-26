@@ -33,7 +33,7 @@ It is important to note that the presented Master–Worker algorithm differs fro
 
 One way to address this bottleneck is to use multiple $master$ processes. In this scheme, each master tracks only a subset of the syndromes, determined by its process ID. The covering radius is obtained once all master processes have received their complete subsets of syndromes. On the worker side, multiple buffer arrays are maintained—one for each master process—and each newly generated syndrome is stored in the buffer corresponding to its rank. The final result is then obtained using collective communication via $MPI_Reduce$.
 
-### How to Compilev and Run the Source Code
+### How to Compile and Run the Source Code
 
 General Remarks According to the Operating System: 
 
