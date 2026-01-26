@@ -290,7 +290,7 @@ unsigned long long int HemmingBound(int n, int k, int q) {
 }
 
 
-unsigned long long int rank_l_over_k_function(int* CC, int k, int l, int q_local, uint64_t A) {
+unsigned long long int rank_l_over_k_function(int* CC, int k, int l, int q_local, unsigned long long int A) {
 	int i = 1, k_i = k, coef = 0, ll = l, pos_last = 1;
 	for (int ii = 1; ii <= k; ii++) { if (CC[ii] != 0)pos_last = ii; } // Find the position of the last nonzero coordinate
 	unsigned long long int rank = 0, sum = 0;
@@ -320,12 +320,12 @@ unsigned long long int rank_l_over_k_function(int* CC, int k, int l, int q_local
 }
 
 // Generate the vector representing the linear combination for the given rank
-void unrankBBgen(uint64_t A, int q, int k, int l) {
+void unrankBBgen(unsigned long long int A, int q, int k, int l) {
 
 	for (int i = 0; i < K; i++) {
 		CC[i] = 0;
 	}
-	uint64_t A_beg = A, rank = 0;
+	unsigned long long int A_beg = A, rank = 0;
 	int kh = k, kb = 1, ll = l;
 	bool ok = true;
 	unsigned long long int sum = 0;
@@ -383,3 +383,4 @@ void unrankBBgen(uint64_t A, int q, int k, int l) {
 		}
 	}
 }
+
