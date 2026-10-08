@@ -4,6 +4,21 @@ A High-Performance Parallel Computing tool implemented in C++ for computing the 
 
 ---
 
+## Some basic notations
+
+* **A coset** of the linear code 𝐶  defined by the vector 𝑥 ∈ 𝐹_q^n is the set 𝑥 + 𝐶 = {𝑥 + 𝑐|𝑐 ∈ 𝐶}.
+* **A coset leader** of 𝑥 + 𝐶 is the vector in the coset with the smallest weight.
+* **The weight distribution of coset leaders** is defined as the set (𝛼1, . . . , 𝛼𝑛), where 𝛼𝑖 gives the number of coset leaders with weight 𝑖.
+* **The covering radius** of 𝐶 is the largest weight in the set of coset leaders.
+
+## Main algorithm for calculating the covering radius of [n,k] linear code with generator matrix 𝐺 = (𝐼_𝑘 |𝐴)
+
+1. Generate representative of each coset of the 𝑣 = (𝑣1, . . . , 𝑣𝑛), where 𝑣𝑖 = 0 for 𝑖 = 1, . . . , 𝑘.
+2. For each coset representative, generate all vectors of the coset and determine the coset leader and its weight. We keep track of the largest weight of coset leaders.
+3. For each coset leader we save its weight in an appropriate structure (e.g. array). 
+4. When we have traversed all cosets the array will represent the **the weight distribution of coset leaders**.
+
+
 ## Features
 
 * **Hybrid Parallelism**: Combines distributed computing via MPI with multi-core thread parallelism via OpenMP.
