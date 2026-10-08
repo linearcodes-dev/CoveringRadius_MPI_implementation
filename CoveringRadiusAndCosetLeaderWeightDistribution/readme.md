@@ -1,6 +1,6 @@
 # CoveringRadiusCosets
 
-A High-Performance Parallel Computing tool implemented in C++ for computing the covering radius and coset leader weight distribution of linear codes over finite fields ($GF(q)$). The project leverages SIMD instructions (AVX2/SSE), OpenMP multi-threading, and MPI distributed processing to scale calculations across HPC architectures.
+A High-Performance Parallel Computing tool implemented in C++ for computing the covering radius and coset leader weight distribution of linear codes over finite fields (GF(q)). The project leverages SIMD instructions (AVX2/SSE), OpenMP multi-threading, and MPI distributed processing to scale calculations across HPC architectures.
 
 ---
 
@@ -11,7 +11,7 @@ A High-Performance Parallel Computing tool implemented in C++ for computing the 
 * **The weight distribution of coset leaders** is defined as the set $(𝛼_1, . . . , 𝛼_𝑛)$, where 𝛼𝑖 gives the number of coset leaders with weight 𝑖.
 * **The covering radius** of 𝐶 is the largest weight in the set of coset leaders.
 
-## Main algorithm for calculating the covering radius of [n,k] linear code with generator matrix 𝐺 = (𝐼_𝑘 |𝐴)
+## Main algorithm for calculating the covering radius of [n,k] linear code with generator matrix $𝐺 = (𝐼_𝑘 |𝐴)$
 
 1. Generate representative of each coset of the $𝑣 = (𝑣_1, . . . , 𝑣_𝑛)$, where $𝑣_𝑖$ = 0 for 𝑖 = 1, . . . , 𝑘.
 2. For each coset representative, generate all vectors of the coset and determine the coset leader and its weight. We keep track of the largest weight of coset leaders.
